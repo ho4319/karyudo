@@ -33,17 +33,21 @@ public class GarageController {
     log.debug("message");
     List<Garage> garages = garageService.listAll(no);
     List<Refuel> refuels = refuelService.listAll(no);
-    for (Garage g : garages) {
-      log.debug(g.getNickName());
-    }
-    for (Refuel r : refuels) {
-      log.debug(r.toString());
+    List<Refuel> costavg = refuelService.costAvg();
+    //for (Garage g : garages) {
+    //  log.debug(g.getNickName());
+    //}
+    //for (Refuel r : refuels) {
+    //  log.debug(r.toString());
+    //}
+    for (Refuel r : costavg) {
+     log.debug(r.toString());
     }
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", garages);
     resultMap.put("refuelList", refuels);
-    
+    resultMap.put("memCostAvg", costavg);
     return resultMap;  
 
   }

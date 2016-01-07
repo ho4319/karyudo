@@ -241,9 +241,24 @@ $.getJSON('list.do', function(resultObj) {
 var twoago = (moment().subtract(60, 'days').months() + 1);
 var oneago = (moment().subtract(30, 'days').months() + 1);
 var present = moment().format('MM');
+var firstMn = 0;
+var secondMn = 0;
+var thirdMn = 0;
+alert(resultObj.memCostAvg[0].liter+"월, "+resultObj.memCostAvg[0].cost+"원, ");
+alert(resultObj.memCostAvg[1].liter+"월, "+resultObj.memCostAvg[1].cost+"원, ");
+alert(resultObj.memCostAvg[2].liter+"월, "+resultObj.memCostAvg[2].cost+"원, ");
 	for (var refuel of resultObj.refuelList) {
-	  alert(moment(refuel.refuelDate,"YYYY-MM-DD").month()+1);
+	  if(twoago == (moment(refuel.refuelDate,"YYYY-MM-DD").month()+1)) {
+	    thirdMn += refuel.cost;
+	  } else if(oneago == (moment(refuel.refuelDate,"YYYY-MM-DD").month()+1)) {
+	    secondMn += refuel.cost;
+	  } else {
+	    firstMn += refuel.cost;
+	  }
 	}
+	firstMn/=1000;
+	secondMn/=1000;
+	thirdMn/=1000;
 var options = {
     'legend': {
         names: [twoago+'월',
@@ -254,16 +269,18 @@ var options = {
     'dataset': {
         title: '최근 3개월 주유금액 비교',
         values: [
-            [34,15], [40,23], [20,16]
+            [(resultObj.memCostAvg[0].cost/=1000),firstMn], 
+            [(resultObj.memCostAvg[1].cost/=1000),secondMn], 
+            [(resultObj.memCostAvg[2].cost/=1000),thirdMn]
             ],
         colorset: ['#DC143C', '#FF8C00', "#30a1ce"],
-        fields: ['회원평균', '본인평균']
+        fields: ['회원평균', '본인합계']
     },
     'chartDiv': 'Nwagon',
     'chartType': 'multi_column',
     'chartSize': { width: 500, height: 250 },
-    'maxValue': 50,
-    'increment': 10,
+    'maxValue': 100,
+    'increment': 20,
     'leftOffsetValue': 35,
     'bottomOffsetValue': 30
 };
