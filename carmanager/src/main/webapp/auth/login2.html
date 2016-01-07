@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="../css/auth/login.css">
+
+</head>
+
+<body>
+  <div id="main" class="container">
+    <div id="gallery" class="cycle-slideshow" 
+    data-cycle-slides="div" 
+    data-cycle-auto-height="4:3"
+    >
+    <div style="background-image:url(../img/auth/image003.jpg)"></div>
+    <div style="background-image:url(../img/auth/image002.jpg)"></div>
+    <div style="background-image:url(../img/auth/image020.jpeg)"></div>
+  </div>
+  
+  <div id="mainText" class="cycle-slideshow" 
+    data-cycle-fx="fade" 
+    data-cycle-timeout="2000"
+    data-cycle-slides="> div">
+    <div>
+        <p>지금</p><p class="intext">'이 순간'</p>
+        <p>내 차를 부탁해</p>
+    </div>
+    <div>
+        <p>지금</p><p class="intext"> '여기에'</p>
+        <p>내 차를 부탁해</p>
+    </div>
+    <div>
+      <p>당신 + </p><p class="intext">'자동차'<p>
+      <p>= 내 차를 부탁해<p>
+    </div>
+  </div>
+  
+  <form id="null"></form>
+  <form action="login.do" class="form-4" method="POST">
+    <div id="topText"><span id="textMycar">내 차를 부탁해</span> 시작하기</div>
+    <p>회원이라면 <span id="now">지금</span> 들어오세요.</p> 
+    <p>
+        <label for="email">Email</label>
+        <input type="text" name="email" placeholder="이메일" id="femail" required>
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input type="password" name='password' placeholder="비밀번호" id="fpassword" required> 
+    </p>
+
+    <div>
+      <input type="checkbox" id="check">
+      이메일 저장
+      <span id="goJoin">
+        <a href="join.html">회원가입</a>
+      </span>
+    </div>
+    
+    <p></p>
+
+    <p>
+      <input id="loginBtn" type="submit" value="시작하기">
+    </p>       
+  </form>
+  
+  </div>
+  <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/auth/cycle2.js"></script>
+  <script type="text/javascript" src="../js/auth/jquery.placeholder.min.js"></script>
+  <script type="text/javascript" src="../js/auth/modernizr.custom.63321.js"></script>
+
+</body>
+</html>

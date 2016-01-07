@@ -1,8 +1,7 @@
-package cms.controller.ajax;
+/*package cms.controller.ajax;
 
 import java.util.HashMap;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,14 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cms.dao.MemberDao;
 import cms.domain.AjaxResult;
 import cms.domain.Member;
+import cms.service.MemberService;
 
 @Controller("ajax.AuthController")
 @RequestMapping("/auth/ajax/*")
 public class AuthController {   
   static public Logger log = Logger.getLogger(AuthController.class);
 
+  @Autowired MemberService memberService;
   @Autowired MemberDao memberDao;
-  @Autowired ServletContext servletContext;
   
   @RequestMapping(value="login", method=RequestMethod.GET)
   public String loginform() {
@@ -37,6 +37,7 @@ public class AuthController {
       String saveEmail,
       HttpServletResponse response,
       HttpSession session) {
+  
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
     paramMap.put("password", password);
@@ -51,15 +52,21 @@ public class AuthController {
     }
     response.addCookie(emailCookie);
     
-    Member member = memberDao.selectOneByEmailPassword(paramMap);
+//  Member member = memberDao.selectOneByEmailPassword(paramMap);
+    Member member = memberService.retrieve(email, password);
+    System.out.println(member);
     
     if (member == null) {
       session.invalidate();
       return new AjaxResult("failure", null);
     }
     
+    System.out.println(member.getEmail());
+    System.out.println(member.getPassword());
+    
     session.setAttribute("loginUser", member);
     
-    return new AjaxResult("success", null);
+    return new AjaxResult("success", member);
   }
 }
+*/
