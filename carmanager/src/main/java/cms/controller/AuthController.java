@@ -1,4 +1,4 @@
-/*package cms.controller;
+package cms.controller;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +19,7 @@ public class AuthController {
   
   @RequestMapping(value="login", method=RequestMethod.GET)
   public String loginform() {
-    return "login";
+    return "login2";
   }
   
   @RequestMapping(value="login", method=RequestMethod.POST)
@@ -49,7 +49,7 @@ public class AuthController {
     
     session.setAttribute("loginUser", member);
     
-    return "redirect:../main/main.do";
+    return "redirect:../main/main.html";
   }
   
   @RequestMapping("logout")
@@ -58,4 +58,3 @@ public class AuthController {
     return "redirect:login.do";
   }
 }
-*/
