@@ -1,56 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>내 차를 부탁해</title>
-  <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../css/auth/login.css">
-  
-  <script type="text/javascript"></script> 
-  <script type="text/javascript" src="../lib/jquery/jquery.js"></script>
-  <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="../js/auth/jquery.cookie.js"></script>  
-  <script type="text/javascript" src="../js/auth/jquery.placeholder.min.js"></script>
-  <script type="text/javascript" src="../js/auth/cycle2.js"></script>
-  <script type="text/javascript" src="../js/auth/modernizr.custom.63321.js"></script>
-  
-  <script>
-	  $(document).ready(function(){  
-		  var email = $.cookie("email");
-		  if(email != null && email != ""){
-		    $("#femail").val(email);					// email textbox에 쿠키값 출력
-		    $("#saveEmail").attr("checked", "checked");		// 체크박스에 체크
-	    }
-	  });  
-  </script>
+<meta charset="UTF-8">
+<title>login</title>
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="../css/auth/login.css">
 
 </head>
 
 <body>
-
-<div id="main" class="container">
-  
-  <!-- 이미지 슬라이드 부분 -->  
-  <div id="gallery" class="cycle-slideshow" 
+  <div id="main" class="container">
+    <div id="gallery" class="cycle-slideshow" 
     data-cycle-slides="div" 
-    data-cycle-auto-height="4:3">
+    data-cycle-auto-height="4:3"
+    >
     <div style="background-image:url(../img/auth/image003.jpg)"></div>
     <div style="background-image:url(../img/auth/image002.jpg)"></div>
     <div style="background-image:url(../img/auth/image020.jpeg)"></div>
   </div>
- 
-  <!-- 텍스트 슬라이드 부분 --> 
+  
   <div id="mainText" class="cycle-slideshow" 
     data-cycle-fx="fade" 
     data-cycle-timeout="2000"
     data-cycle-slides="> div">
     <div>
-      <p>지금</p><p class="intext">'이 순간'</p>
-      <p>내 차를 부탁해</p>
+        <p>지금</p><p class="intext">'이 순간'</p>
+        <p>내 차를 부탁해</p>
     </div>
     <div>
-      <p>지금</p><p class="intext"> '여기에'</p>
-      <p>내 차를 부탁해</p>
+        <p>지금</p><p class="intext"> '여기에'</p>
+        <p>내 차를 부탁해</p>
     </div>
     <div>
       <p>당신 + </p><p class="intext">'자동차'<p>
@@ -59,52 +38,38 @@
   </div>
   
   <form id="null"></form>
-  
-  <form class="form-4" method="POST">
+  <form action="login.do" class="form-4" method="POST">
     <div id="topText"><span id="textMycar">내 차를 부탁해</span> 시작하기</div>
     <p>회원이라면 <span id="now">지금</span> 들어오세요.</p> 
     <p>
-      <label for="login">Email</label>
-      <input type="text" name="login" placeholder="이메일" id="femail" required>
+        <label for="email">Email</label>
+        <input type="text" name="email" placeholder="이메일" id="femail" required>
     </p>
     <p>
-      <label for="password">Password</label>
-      <input type="password" name='password' placeholder="비밀번호" id="fpassword" required> 
+        <label for="password">Password</label>
+        <input type="password" name='password' placeholder="비밀번호" id="fpassword" required> 
     </p>
-    <div>       
-      <input type="checkbox" id="saveEmail">이메일 저장
-        <span id="goJoin"><a href="join.html">회원가입</a></span>
-    </div>  
+
+    <div>
+      <input type="checkbox" id="check">
+      이메일 저장
+      <span id="goJoin">
+        <a href="join.html">회원가입</a>
+      </span>
+    </div>
+    
     <p></p>
+
     <p>
       <input id="loginBtn" type="submit" value="시작하기">
     </p>       
-
-		<script>
-			$('#loginBtn').click(function(event) {
-				var checkStatus = $("#saveEmail").is(":checked"); 
-			  if(checkStatus){									
-				  $.cookie("email", $("#femail").val());	
-			  }else{    
-					$.cookie("email", "");				
-			  }   
-				  
-				$.post('ajax/login.do', {
-					email: $('#femail').val(),
-					password: $('#fpassword').val(), 
-				}, function(resultObj) {
-					var ajaxResult = resultObj.ajaxResult;
-					if (ajaxResult.status == "success") {
-			      location.href = "../main/main.html";
-					} 
-				}, 'json');
-			});
-		</script>
-
   </form>
   
-</div>
-  
+  </div>
+  <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/auth/cycle2.js"></script>
+  <script type="text/javascript" src="../js/auth/jquery.placeholder.min.js"></script>
+  <script type="text/javascript" src="../js/auth/modernizr.custom.63321.js"></script>
 
 </body>
 </html>
