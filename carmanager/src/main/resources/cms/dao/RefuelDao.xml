@@ -12,6 +12,12 @@
     <result column="ref_dt" property="refuelDate"/>
   </resultMap>
 
+  <select id="selectRefuelList" resultMap="refuelMap" parameterType="int">
+    select
+      rno, grno, ref_dt, mile, cost, liter
+    from refuel
+    where grno = #{no}
+  </select>
    
   
   
