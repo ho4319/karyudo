@@ -1,0 +1,1 @@
+update members set pwd=sha1(1111);

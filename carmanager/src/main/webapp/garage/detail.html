@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>내 차를 부탁해</title>
+
+<link rel="stylesheet" type="text/css" href="../css/main/main.css">
+<!-- 나눔차트 라이브러리 -->
+<link rel="stylesheet" type="text/css" href="../css/main/Nwagon.css">
+
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+<!-- 메뉴바 관련 스크립트 -->
+<script>
+$(window).load(function(){
+    $("[data-toggle]").click(function() {
+        var toggle_el = $(this).data("toggle");
+        $(toggle_el).toggleClass("open-sidebar");
+    });
+        $(".swipe-area").swipe({
+            swipeStatus:function(event, phase, direction, distance, duration, fingers)
+                {
+                    if (phase=="move" && direction =="right") {
+                        $(".container").addClass("open-sidebar");                        
+                        return false;
+                    }
+                    if (phase=="move" && direction =="left") {
+                        $(".container").removeClass("open-sidebar");
+                        return false;
+                    }
+                }
+        }); 
+    });
+</script>
+
+<script src="../js/main/Nwagon.js"></script>
+<!-- D3.js 라이브러리 -->
+<script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+<script src="../js/main/liquidFillGauge.js" language="JavaScript"></script>
+<!-- 출렁이는 차트 스타일 -->
+<style>
+.liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+</style>
+<!-- 메인 이미지 바뀌는 효과 -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../js/main/nivo-slider.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../js/main/jquery.nivo.slider.js"></script>
+
+<!-- select 박스 효과 -->
+<script src="../js/main/jquery.jqtransform.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/main/jqtransform.css" />
+
+<script type="text/javascript">
+  $(function(){
+    $('#select_container').jqTransform();
+  });
+</script> 
+</head>
+
+
+<body>  
+  <!-- container start -->
+  <div class="container">
+    
+    <!-- 메뉴 바 작업 start -->
+    <div id="sidebar">
+      
+      <!-- 로고 부분 영역 -->
+      <div class="logowrapper">
+        <div class="logoview">
+          <a href="../main/main.html" class="logo">&nbsp내 차를 부탁해</a>
+        </div>
+      </div>
+    
+      <!-- 메뉴 부분 영역 -->   
+      <div class="menubarview"> 
+        <ul>              
+          <li><a href='#'>&nbsp&nbsp<img src="../img/main/home.png" class="menu_icon"> &nbsp&nbsp&nbsp<span>MyPage</span></a></li>
+          <li><a href='#'>&nbsp&nbsp<img src="../img/main/car.png" class="menu_icon"> &nbsp&nbsp&nbsp<span>차량등록</span></a></li>
+          <li><a href='#'>&nbsp&nbsp<img src="../img/main/manage.png" class="menu_icon"> &nbsp&nbsp&nbsp<span>차량관리</span></a></li>
+          <li><a href='#'>&nbsp&nbsp<img src="../img/main/repaircar.png" class="menu_icon"> &nbsp&nbsp&nbsp<span>정비소</span></a></li>
+          <li><a href='#'>&nbsp&nbsp<img src="../img/main/match.png" class="menu_icon"> &nbsp&nbsp&nbsp<span>맞춤서비스</span></a></li>
+          <li><a href='#'>&nbsp&nbsp<img src="../img/main/community.png" class="menu_icon"> &nbsp&nbsp&nbsp<span>커뮤니티</span></a></li>
+        </ul>
+      </div>
+        
+      <!-- 카피라이터 부분 영역 -->  
+      <div class="footerwrapper"> 
+        <div class="footerview">
+          <p> &copy 2016. 다인이네팀 all rights reserved</p>
+        </div>
+      </div> 
+           
+    </div>  
+    
+    <script>
+    $(function(){
+	  $('.#sidebar').css('height', '100%');
+    });
+    </script>
+         
+    <!-- 메뉴바 작업 end -->
+  
+
+    <!-- 메인 표출 정보 작업 start -->  
+    <div class="view">
+      <div class="carbox">      
+        <img src="../img/main/maintop_1024.png">
+     
+        <!-- 메뉴바 버튼 관련 -->   
+        <div class="main-content">
+          <a href="#" data-toggle=".container" id="sidebar-toggle"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>
+        </div>
+      </div>      
+      
+     <!-- 자동차 선택 -->
+      <div id="select_container" class="selectcar">
+        <select id="myCarList" class="m_select select01"></select>
+      </div>
+      
+      <!-- 로그아웃 -->
+      <div class="logout">
+        <button id="logout" type="button">로그아웃</button>
+      </div>
+      <script type="text/javascript">
+      $('#logout').click(function(event) {
+        location.href = "../auth/login.html";
+      });
+      </script>
+    
+    
+    <!-- 연비 분석 정보 표출 영역 -->
+    <div class="averoil">
+      <h2>ooo님의 연비 분석</h2>
+      <p>차종의 공인연비 대비 평균 연비를 보여드립니다.</p>
+        <div id="chart71">   
+  
+        </div>
+    </div>
+    
+    <!-- 주유 대비 효율 분석 정보 표출 영역 -->
+    <div class="effi">
+      <h2 id="chart2Title">저번 주유 대비 효율 분석</h2>
+      <p>0%에서 최고 10%까지 효율을 개선해 보세요.</p>
+      <svg id="fillgauge1" width="0%" height="0" onclick="gauge1.update(NewValue());"></svg>
+      <svg id="fillgauge2" width="0%" height="0" onclick="gauge2.update(NewValue());"></svg>
+      <svg id="fillgauge3" width="0%" height="0" onclick="gauge3.update(NewValue());"></svg>
+      <svg id="fillgauge4" width="0%" height="0" onclick="gauge4.update(NewValue());"></svg>
+      <svg id="fillgauge5" width="350" height="270"></svg>
+      <svg id="fillgauge6" width="0%" height="0" onclick="gauge6.update(NewValue());"></svg>    
+      <script language="JavaScript" src="../js/main/chart.js"></script>
+    </div>
+    
+    <!-- 홍보용 멘트 영역 -->
+    <div class="viewintitle">
+      <h2 class="titlemsg">차량 관리 상태를 한 눈에 보여드립니다.</h2><br><br><br>
+      <p class="titlemsg">번거로움 최소화한 간편한 이용<br>지금 시작하세요!</p>
+    </div>
+    
+    <!-- 홍보용 사진 영역 -->
+    <div class="viewinslide">
+      <div id="slider" class="nivoSlider"> 
+         <img src="../img/main/stop.png" data-thumb="images/toystory.jpg" alt=""/> 
+         <img src="../img/main/road.png" data-thumb="images/up.jpg" alt=""/>
+      </div>
+      
+      <script type="text/javascript">
+        $(window).load(function() {
+        $('#slider').nivoSlider({
+        effect: 'random',
+        slices: 15,
+        boxCols: 8,
+        boxRows: 4,
+        animSpeed: 500,
+        pauseTime: 3000,
+        startSlide: 0,
+        directionNav: true,
+        controlNav: false,
+        controlNavThumbs: false,
+        pauseOnHover: true,
+        manualAdvance: false,
+        prevText: '',
+        nextText: '',
+        randomStart: false,
+        beforeChange: function(){},
+        afterChange: function(){},
+        slideshowEnd: function(){},
+        lastSlide: function(){},
+        afterLoad: function(){}
+        });
+        });
+      </script>
+    </div>
+    
+    <div class="buyoil">
+      <h2>주유 금액 내역</h2>
+      <p>최근 3개월 기록을 확인할 수 있습니다.</p> 
+      <div id="Nwagon">
+        </div>
+      </div>
+      
+      <!-- 소모품 상태 정보 표출 영역 --> 
+      <div class="carcondition">
+        <div>
+          <h2>상태를 한 눈에 확인하세요.</h2>
+          <p>교체 시기가 다가오는 소모품을 확인하고 교체하세요.</p>
+        </div>
+        <img src="../img/main/car_condition.png">
+        <img src="../img/main/car_condition911.png">
+      </div>      
+      
+    
+    </div> 
+    <!-- 메인 표출 정보 작업 end -->  
+
+  </div> <!-- container end -->
+<script>
+<!-- 연비 분석 관련 스크립트 -->
+$.getJSON('list.do', function(resultObj) {
+  alert("들어옴?");
+for (var garage of resultObj.data) {
+  alert(garage.nickName);
+}
+});
+
+var selectcar = $("#myCarList");
+$("<option>").html("garage.nickName").appendTo(selectcar);
+var options = {
+     'legend':{names: ['01-03', '01-03', '01-03', '01-03', '01-03', '01-03', '01-03', '01-03']},
+     'dataset':{
+         title:'개인연비 per 공인연비', 
+         values: [[14,16], [17,16], [12,16], [11,16], [9,16], [20,16], [18,16]],
+         colorset: ['#0072b2', '#cc79a7'],
+         fields:['개인연비', '공인연비']
+     },
+     'chartDiv' : 'chart71',
+     'chartType' : 'line',
+     'leftOffsetValue': 30,
+     'bottomOffsetValue': 20,
+     'chartSize' : {width:500, height:250},
+     'minValue' :0,
+     'maxValue' : 20,
+     'increment' : 5,
+     'isGuideLineNeeded' : true //default set to false
+ };
+
+ Nwagon.chart(options);
+<!-- 주유 금액 내역 정보 표출 영역 -->
+   var options = {
+       'legend': {
+           names: ['1월`','2월','3월'],
+           hrefs: [
+             
+           ]
+       },
+       'dataset': {
+           title: '최근 3개월 주유금액 비교',
+           values: [
+               [34,15], [40,23], [20,16]
+               ],
+           colorset: ['#DC143C', '#FF8C00', "#30a1ce"],
+           fields: ['회원평균', '본인평균']
+       },
+       'chartDiv': 'Nwagon',
+       'chartType': 'multi_column',
+       'chartSize': { width: 500, height: 250 },
+       'maxValue': 50,
+       'increment': 10,
+       'leftOffsetValue': 35,
+       'bottomOffsetValue': 30
+   };
+   Nwagon.chart(options); 
+ </script>
+</body>
+</html>

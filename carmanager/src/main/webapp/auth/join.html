@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+
+  <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/auth/join.css">
+</head>
+<body>
+  <div id="main" class="container">
+      <div id="gallery" class="cycle-slideshow" 
+    data-cycle-slides="div" 
+    data-cycle-auto-height="16:9"
+    >
+    <div style="background-image:url(../img/auth/image003.jpg)"></div>
+    <div style="background-image:url(../img/auth/image002.jpg)"></div>
+    <div style="background-image:url(../img/auth/image020.jpeg)"></div>
+</div>
+    <div id="mainText" class="cycle-slideshow" 
+      data-cycle-fx="fade" 
+      data-cycle-timeout="2000"
+      data-cycle-slides="> div">
+      
+      <div>
+        <p>지금</p><p class="intext">'이 순간'</p>
+        <p>내 차를 부탁해</p>
+      </div>
+      <div>
+        <p>지금</p><p class="intext"> '여기에'</p>
+        <p>내 차를 부탁해</p>
+      </div>
+      <div>
+        <p>당신 + </p><p class="intext">'자동차'<p>
+        <p>= 내 차를 부탁해<p>
+      </div>
+    </div>
+  
+    <form id="null"></form>
+  
+    <form class="input">
+      <div id="topText">이메일 하나로 <span id="now">간편하게</span> 시작하세요!</div>
+      <p>다른 정보는 받지 않습니다. 부담 없이 이용하세요.</p>  
+      <div id="imgInput">
+        <img src="../img/auth/exam.png" class="img-thumbnail"><br>
+        <label for="fileInput">사진 등록</label>
+        <input type="file" id="fileInput">
+      </div>
+      
+      <div id="textInput" class="form-group">
+        <div id="email">
+          <label for="email">Email</label>
+          <input type="text" name="email" placeholder="이메일" size="15" required>
+          <input type="button" id="check" value="중복체크">
+        </div>
+        <div id="nickName">
+          <label for="nickname">NickName</label>
+          <input type="text" name="nickname" placeholder="별명" size="15" required>
+        </div>
+        <div id="password">
+          <label for="password">Password</label>
+          <input type="password" name='password' size="15" placeholder="비밀번호" required>
+        </div>
+        <div id="password">
+          <label for="password_confirm">Password</label>
+          <input type="password" name='password_confirm' size="15" placeholder="비밀번호 확인" required>
+        </div>
+      </div>
+    
+      <div id="button">
+        <input type="button" class="btn btn-default" onclick="go()" value="가입">
+        <input type="button" class="btn btn-default" onclick="go()" value="취소">
+      </div>
+        
+    </form>
+  </div>
+  
+  <script type="text/javascript" src="../js/auth/login.js"></script>
+  <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/auth/cycle2.js"></script>
+  <script type="text/javascript" src="../js/auth/jquery.placeholder.min.js"></script>
+  <script type="text/javascript" src="../js/auth/modernizr.custom.63321.js"></script>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+  	_gaq.push(['_setAccount', 'UA-36251023-1']);
+  	_gaq.push(['_setDomainName', 'jqueryscript.net']);
+  	_gaq.push(['_trackPageview']);
+
+  	(function() {
+   	 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   	 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  	})();
+  	function go() {
+  		window.location.href="login.html";
+  	}
+  </script>
+</body>
+</html>

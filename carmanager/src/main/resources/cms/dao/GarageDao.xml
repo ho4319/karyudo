@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cms.dao.GarageDao">
+  <!-- mysql에서 사용하는 컬럼이름과 도메인에서 사용하는 프로퍼티 이름이 다르게 사용하는 것이 좋다
+      유지보수에 쉽게 하기 위해서, 그리고 다르게 사용할 경우 resultMap 으로 컬럼과 프로퍼티를 설정하자 -->
+  <resultMap type="garage" id="garageMap">
+    <id column="grno" property="myCarNo"/>
+    <result column="mdno" property="modelNo"/>
+    <result column="mno" property="memberNo"/>
+    <result column="c_nick" property="nickName"/>
+  </resultMap>
+
+  <select id="selectOne" resultMap="garageMap" parameterType="int">
+    select
+      c_nick
+    from garage
+    where mno = #{no}
+  </select>
+  
+  
+  
+  
+  <select id="selectList" resultMap="garageMap" parameterType="int">
+  	select
+      c_nick
+    from garage
+    where mno = #{no}
+  </select>
+</mapper>

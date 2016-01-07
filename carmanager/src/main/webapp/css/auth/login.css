@@ -1,0 +1,241 @@
+@import url('demo.css');
+@import url('font-awesome.css');
+
+@CHARSET "UTF-8";
+
+html  {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+	overflow: visible;
+}
+
+/* BODY속 container 시작 */
+.container {
+  position: relative;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  min-width: 1024px;
+  min-height: 768px;
+}
+#gallery{
+		z-index:1;
+}
+#gallery div { 
+	width: 100%; 
+	height: 100%; 
+	background-size:cover;
+	min-width: 1024px;	
+	min-height: 768px;
+}
+/* BODY속 container 끝 */
+
+/* 멘트 영역 부분 시작 */
+#mainText {
+  width: 500px;
+  height: 220px;
+  position: absolute;
+  top: 250px;
+  left: 150px;
+  font-weight: lighter;
+  font-size: 40px;
+  color: antiquewhite;
+  text-shadow: darkgray 1px 1px 1px;
+  font-family: sans-serif;
+  /*border: 1px solid red;*/
+}
+
+.intext {
+    font-size: 45px;
+    font-weight: bolder;
+}
+/* 멘트 영역 부분 끝 */
+
+/* 로그인 영역 배경 시작 */
+#null {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 25%;
+  right: 5%;
+  z-index:2;
+  /*#2B2547*/
+  
+  background-color: RGB(25, 25, 25);
+  opacity: 0.9;
+  border-radius: 8px 8px 8px 8px;
+  
+  float: left;
+}
+/* 로그인 영역 배경 끝 */
+
+/* 로그인 영역 설정 시작 */
+.form-4 {
+    width: 300px;
+    position: absolute;
+    top: 30%;
+    right: 8%;
+ 		z-index: 4;
+    float: left;
+    
+    /* Font styles */
+    font-family: 'Raleway', 'Lato', Arial, sans-serif;
+    color: white;
+    text-shadow: 0 2px 1px rgba(0,0,0,0.3);
+}
+
+/* 로그인폼 텍스트 */
+#topText {
+	font-size: 25px;
+	text-align: left;
+	padding-top: 10px;
+	margin-bottom: 15px;
+    border-bottom: 1px solid darkred;
+    border-bottom-width: 2px;
+    font-weight: normal;
+    color: white;
+    /*text-shadow: white 1px 1px 1px;*/
+}
+
+#now {
+    color: darkred;
+    font-weight: bold;
+}
+
+#textMycar {
+    color: darkred;
+    font-weight: bold;
+}
+
+/* 로그인폼 CSS */
+.form-4 input[type=text],
+.form-4 input[type=password] {
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 15px;
+
+    border: 1px solid #4e3043;
+    border: 1px solid rgba(78,48,67, 0.8);
+    background: rgba(0,0,0,0.5);
+    border-radius: 2px;
+    box-shadow: 
+        0 1px 0 rgba(255,255,255,0.2), 
+        inset 0 1px 1px rgba(0,0,0,0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    font-family: 'Raleway', 'Lato', Arial, sans-serif;
+    color: #fff;
+    font-size: 13px;
+}
+
+.form-4 input::-webkit-input-placeholder {
+    color: white;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.form-4 input:-moz-placeholder {
+    color: white;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.form-4 input:-ms-input-placeholder {
+    color: white;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.form-4 input[type=text]:hover,
+.form-4 input[type=password]:hover,
+.form-4 input[type=submit]:hover {
+    border-color: white;
+}
+
+.form-4 input[type=text]:focus,
+.form-4 input[type=password]:focus {
+    box-shadow: 
+        0 1px 0 rgba(255,255,255,0.2), 
+        inset 0 1px 1px rgba(0,0,0,0.1),
+        0 0 0 3px rgba(255,255,255,0.15);
+    outline: none;
+}
+
+.no-boxshadow .form-4 input[type=text]:focus,
+.no-boxshadow .form-4 input[type=password]:focus {
+    outline: 1px solid white;
+}
+
+.form-4 input[type=submit] {
+    width: 100%;
+    padding: 8px 5px;
+    
+    background: #634056;
+    background: -moz-linear-gradient(rgba(99,64,86,0.5), rgba(76,49,65,0.7));
+    background: -ms-linear-gradient(rgba(99,64,86,0.5), rgba(76,49,65,0.7));
+    background: -o-linear-gradient(rgba(99,64,86,0.5), rgba(76,49,65,0.7));
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(99,64,86,0.5)), to(rgba(76,49,65,0.7)));
+    background: -webkit-linear-gradient(rgba(99,64,86,0.5), rgba(76,49,65,0.7));
+    background: darkred;
+    border-radius: 5px;
+    border: 1px solid #4e3043;
+    box-shadow: inset 0 1px rgba(255,255,255,0.4), 0 2px 1px rgba(0,0,0,0.1);
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    color: white;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Raleway', 'Lato', Arial, sans-serif;
+}
+
+.form-4 input[type=submit]:hover {
+    background: red;
+}
+
+.no-boxshadow .form-4 input[type=submit]:hover {
+    background: #594642;
+}
+
+.form-4 label {
+    display: none;
+    padding: 0 0 5px 2px;
+    cursor: pointer;
+}
+
+.form-4 label:hover ~ input {
+    border-color: #333;
+}
+
+.no-placeholder .form-4 label {
+    display: block;
+}
+
+#goJoin {
+  float: right;
+}
+
+a:link, a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+A:hover {
+	color:white; 
+	background-color: Highlight;
+	color: HighlightText; 
+	text-decoration:underline;
+}
+
+/* 오른쪽 로그인 영역 설정 끝 */
