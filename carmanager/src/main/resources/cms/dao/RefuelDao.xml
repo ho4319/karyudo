@@ -19,8 +19,13 @@
     where grno = #{no}
   </select>
    
-  
-  
-  
+  <select id="selectCostAvg" resultMap="refuelMap">
+  	select 
+  		month(ref_dt)as liter, 
+  		avg(cost)as cost 
+  	from refuel 
+  	group by month(ref_dt)
+  	order by liter desc;
+  </select>
   
 </mapper>

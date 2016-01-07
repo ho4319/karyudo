@@ -7,5 +7,5 @@ import cms.domain.Refuel;
 public interface RefuelService {
   List<Refuel> listAll(int no);
   
-  
+  List<Refuel> costAvg();
 }
