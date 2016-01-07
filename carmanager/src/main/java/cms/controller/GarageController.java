@@ -47,6 +47,7 @@ public class GarageController {
     for (Refuel r : costavg) {
      log.debug(r.toString());
     }
+    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", garages);
