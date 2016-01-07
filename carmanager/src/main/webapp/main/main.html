@@ -235,18 +235,20 @@ $.getJSON('list.do', function(resultObj) {
 	$("<option>").html(garage.nickName).appendTo(selectcar);
 	}
 	
+
+
+<!-- 주유 금액 내역 정보 표출 영역 -->
+var twoago = (moment().subtract(60, 'days').months() + 1);
+var oneago = (moment().subtract(30, 'days').months() + 1);
+var present = moment().format('MM');
 	for (var refuel of resultObj.refuelList) {
 	  alert(moment(refuel.refuelDate,"YYYY-MM-DD").month()+1);
 	}
-
-<!-- 주유 금액 내역 정보 표출 영역 -->
-
-
 var options = {
     'legend': {
-        names: [(moment().subtract(60, 'days').months() + 1)+'월',
-                (moment().subtract(30, 'days').months() + 1)+'월',
-                moment().format('MM')+'월'],
+        names: [twoago+'월',
+                oneago+'월',
+                present+'월'],
        
     },
     'dataset': {
