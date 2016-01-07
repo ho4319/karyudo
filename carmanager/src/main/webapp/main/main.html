@@ -55,6 +55,10 @@ $(window).load(function(){
     $('#select_container').jqTransform();
   });
 </script> 
+<!-- 날짜 변환 라이브러리 -->
+<!-- <script src="../js/main/moment.js" type="text/javascript"></script> -->
+<script src="../js/main/moment_local.js" type="text/javascript"></script>
+
 </head>
 
 
@@ -231,6 +235,33 @@ for (var garage of resultObj.data) {
 $("<option>").html(garage.nickName).appendTo(selectcar);
 }
 
+<!-- 주유 금액 내역 정보 표출 영역 -->
+var options = {
+    'legend': {
+        names: [(moment().subtract(60, 'days').months() + 1)+'월',
+                (moment().subtract(30, 'days').months() + 1)+'월',
+                moment().format('MM')+'월'],
+       
+    },
+    'dataset': {
+        title: '최근 3개월 주유금액 비교',
+        values: [
+            [34,15], [40,23], [20,16]
+            ],
+        colorset: ['#DC143C', '#FF8C00', "#30a1ce"],
+        fields: ['회원평균', '본인평균']
+    },
+    'chartDiv': 'Nwagon',
+    'chartType': 'multi_column',
+    'chartSize': { width: 500, height: 250 },
+    'maxValue': 50,
+    'increment': 10,
+    'leftOffsetValue': 35,
+    'bottomOffsetValue': 30
+};
+Nwagon.chart(options); 
+
+
 var options = {
      'legend':{names: ['01-03', '01-03', '01-03', '01-03', '01-03', '01-03', '01-03', '01-03']},
      'dataset':{
@@ -249,35 +280,9 @@ var options = {
      'increment' : 5,
      'isGuideLineNeeded' : true //default set to false
  };
-
- Nwagon.chart(options);
-<!-- 주유 금액 내역 정보 표출 영역 -->
-   var options = {
-       'legend': {
-           names: ['1월`','2월','3월'],
-           hrefs: [
-             
-           ]
-       },
-       'dataset': {
-           title: '최근 3개월 주유금액 비교',
-           values: [
-               [34,15], [40,23], [20,16]
-               ],
-           colorset: ['#DC143C', '#FF8C00', "#30a1ce"],
-           fields: ['회원평균', '본인평균']
-       },
-       'chartDiv': 'Nwagon',
-       'chartType': 'multi_column',
-       'chartSize': { width: 500, height: 250 },
-       'maxValue': 50,
-       'increment': 10,
-       'leftOffsetValue': 35,
-       'bottomOffsetValue': 30
-   };
-   Nwagon.chart(options); 
+   Nwagon.chart(options);
    
-});
+});   
 
  </script>
 </body>

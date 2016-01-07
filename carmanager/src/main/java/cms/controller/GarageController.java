@@ -37,7 +37,7 @@ public class GarageController {
       log.debug(g.getNickName());
     }
     for (Refuel r : refuels) {
-      log.debug(r.getRefuelDate());
+      log.debug(r.toString());
     }
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
