@@ -133,7 +133,7 @@ $(window).load(function(){
       </div>
       <script type="text/javascript">
       $('#logout').click(function(event) {
-        location.href = "../auth/login.html";
+        location.href = "../auth/login.do";
       });
       </script>
     
@@ -230,12 +230,18 @@ $(window).load(function(){
 var selectcar = $("#myCarList");
 $.getJSON('list.do', function(resultObj) {
 //  alert("들어옴?");
-for (var garage of resultObj.data) {
-//  alert(garage.nickName);
-$("<option>").html(garage.nickName).appendTo(selectcar);
-}
+	for (var garage of resultObj.data) {
+	//  alert(garage.nickName);
+	$("<option>").html(garage.nickName).appendTo(selectcar);
+	}
+	
+	for (var refuel of resultObj.refuelList) {
+	  alert(moment(refuel.refuelDate,"YYYY-MM-DD").month()+1);
+	}
 
 <!-- 주유 금액 내역 정보 표출 영역 -->
+
+
 var options = {
     'legend': {
         names: [(moment().subtract(60, 'days').months() + 1)+'월',

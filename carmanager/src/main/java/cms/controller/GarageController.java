@@ -43,7 +43,7 @@ public class GarageController {
     resultMap.put("status", "success");
     resultMap.put("data", garages);
     resultMap.put("refuelList", refuels);
-    //!!
+    
     return resultMap;  
 
   }
