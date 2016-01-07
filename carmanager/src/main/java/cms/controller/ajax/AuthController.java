@@ -25,31 +25,36 @@ public class AuthController {
   @Autowired MemberDao memberDao;
   @Autowired ServletContext servletContext;
   
-  @RequestMapping(value="login", method=RequestMethod.GET)
-  public String loginform() {
-    return "login";
-  }
+//  @RequestMapping(value="login", method=RequestMethod.GET)
+//  public String loginform() {
+//    return "login";
+//  }
   
   @RequestMapping(value="login", method=RequestMethod.POST)
   public AjaxResult login(
       String email,
       String password,
-      String saveEmail,
+//      String saveEmail,
       HttpServletResponse response,
       HttpSession session) {
+	  
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
     paramMap.put("password", password);
         
-    Cookie emailCookie = null;
-    if (saveEmail != null) {
-      emailCookie = new Cookie("email", email);
-      emailCookie.setMaxAge(60 * 60 * 24 * 7);
-    } else {
-      emailCookie = new Cookie("email", "");
-      emailCookie.setMaxAge(0);
-    }
-    response.addCookie(emailCookie);
+//    Cookie emailCookie = null;
+//    if (saveEmail != null) {
+//      log.debug("이메일 저장");
+//      emailCookie = new Cookie("email", email);
+//      emailCookie.setMaxAge(60 * 60 * 24 * 7);
+//      log.debug(emailCookie);
+//    } else {
+//      log.debug("이메일 저장안함");
+//      emailCookie = new Cookie("email", "");
+//      emailCookie.setMaxAge(0);
+//      log.debug(emailCookie);
+//    }
+//    response.addCookie(emailCookie);
     
     Member member = memberDao.selectOneByEmailPassword(paramMap);
     
