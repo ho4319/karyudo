@@ -50,11 +50,6 @@ $(window).load(function(){
 <link rel="stylesheet" href="../js/main/nivo-slider.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../js/main/jquery.nivo.slider.js"></script>
 
-<script type="text/javascript">
-  $(function(){
-    $('#select_container').jqTransform();
-  });
-</script> 
 <!-- 날짜 변환 라이브러리 -->
 <!-- <script src="../js/main/moment.js" type="text/javascript"></script> -->
 <script src="../js/main/moment_local.js" type="text/javascript"></script>
@@ -241,9 +236,9 @@ $.getJSON('list.do', function(resultObj) {
 var twoago = (moment().subtract(60, 'days').months() + 1);
 var oneago = (moment().subtract(30, 'days').months() + 1);
 var present = moment().format('MM');
-	for (var refuel of resultObj.refuelList) {
+	/* for (var refuel of resultObj.refuelList) {
 	  alert(moment(refuel.refuelDate,"YYYY-MM-DD").month()+1);
-	}
+	} */
 var options = {
     'legend': {
         names: [twoago+'월',
