@@ -58,7 +58,6 @@ public class AuthController {
     
 //  Member member = memberDao.selectOneByEmailPassword(paramMap);
     Member member = memberService.retrieve(email, password);
-    System.out.println(member);
     
     if (member == null) {
       session.invalidate();
