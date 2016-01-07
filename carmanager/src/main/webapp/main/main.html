@@ -105,20 +105,13 @@ $(window).load(function(){
     <div class="view">
       <div class="carbox">      
         <img src="../img/main/maintop_1024.png">
-     
-        <!-- 메뉴바 버튼 관련 -->   
-        <div class="main-content">
-          <a href="#" data-toggle=".container" id="sidebar-toggle"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>
-        </div>
-      </div>      
-      
-     <!-- 자동차 선택 -->
+        <!-- 자동차 선택 -->
       <div id="select_container" class="selectcar">
         <select id="myCarList">
-		  <!--  <option value="01">팥죽</option>
-		   <option value="02">찐빵</option>
-		   <option value="03">팥빵</option>
-		   <option value="04">호빵</option> -->
+      <!--  <option value="01">팥죽</option>
+       <option value="02">찐빵</option>
+       <option value="03">팥빵</option>
+       <option value="04">호빵</option> -->
         </select>
       </div>
       
@@ -131,7 +124,13 @@ $(window).load(function(){
         location.href = "../auth/login.do";
       });
       </script>
-    
+     
+        <!-- 메뉴바 버튼 관련 -->   
+        <div class="main-content">
+          <a href="#" data-toggle=".container" id="sidebar-toggle"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>
+        </div>
+      </div>      
+      
     
     <!-- 연비 분석 정보 표출 영역 -->
     <div class="averoil">
@@ -254,8 +253,8 @@ alert(resultObj.memCostAvg[2].liter+"월, "+resultObj.memCostAvg[2].cost+"원, "
 	firstMn/=1000;
 	secondMn/=1000;
 	thirdMn/=1000;
->>>>>>> 0048a3476e42645aa8b8829f701ea483220547b8
-var options = {
+
+	var options = {
     'legend': {
         names: [twoago+'월',
                 oneago+'월',
