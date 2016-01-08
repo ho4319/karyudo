@@ -108,10 +108,6 @@ $(window).load(function(){
         <!-- 자동차 선택 -->
       <div id="select_container" class="selectcar">
         <select id="myCarList">
-      <!--  <option value="01">팥죽</option>
-       <option value="02">찐빵</option>
-       <option value="03">팥빵</option>
-       <option value="04">호빵</option> -->
         </select>
       </div>
       
@@ -223,10 +219,15 @@ $(window).load(function(){
 
 var selectcar = $("#myCarList");
 $.getJSON('list.do', function(resultObj) {
-//  alert("들어옴?");
+  //alert("들어옴?");Math.abs(-12390)
+  var effic = new Array();
+  for (var i = 0; i < 7; i++) {
+    effic[i] = (resultObj.refuelList[i].mile-resultObj.refuelList[i+1].mile)/resultObj.refuelList[i+1].liter;
+  }
 	for (var garage of resultObj.data) {
 	//  alert(garage.nickName);
-	$("<option>").html(garage.nickName).appendTo(selectcar);
+	$("<option value='"+ garage.myCarNo +"'>").html(garage.nickName).appendTo(selectcar);
+	//$("<option>").html(garage.nickName).appendTo(selectcar);
 	}
 	
 
@@ -238,9 +239,9 @@ var present = moment().format('MM');
 var firstMn = 0;
 var secondMn = 0;
 var thirdMn = 0;
-alert(resultObj.memCostAvg[0].liter+"월, "+resultObj.memCostAvg[0].cost+"원, ");
-alert(resultObj.memCostAvg[1].liter+"월, "+resultObj.memCostAvg[1].cost+"원, ");
-alert(resultObj.memCostAvg[2].liter+"월, "+resultObj.memCostAvg[2].cost+"원, ");
+//alert(resultObj.memCostAvg[0].liter+"월, "+resultObj.memCostAvg[0].cost+"원, ");
+//alert(resultObj.memCostAvg[1].liter+"월, "+resultObj.memCostAvg[1].cost+"원, ");
+//alert(resultObj.memCostAvg[2].liter+"월, "+resultObj.memCostAvg[2].cost+"원, ");
 	for (var refuel of resultObj.refuelList) {
 	  if(twoago == (moment(refuel.refuelDate,"YYYY-MM-DD").month()+1)) {
 	    thirdMn += refuel.cost;
@@ -281,12 +282,13 @@ alert(resultObj.memCostAvg[2].liter+"월, "+resultObj.memCostAvg[2].cost+"원, "
 };
 Nwagon.chart(options); 
 
-
+//values: [[14,16], [17,16], [12,16], [11,16], [9,16], [20,16], [18,16]],
 var options = {
-     'legend':{names: ['01-03', '01-03', '01-03', '01-03', '01-03', '01-03', '01-03', '01-03']},
+     'legend':{names: ['01', '01', '01', '01', '01', '01', '01', '01']},
      'dataset':{
          title:'개인연비 per 공인연비', 
-         values: [[14,16], [17,16], [12,16], [11,16], [9,16], [20,16], [18,16]],
+         values: [[effic[6],16], [effic[5],16], [effic[4],16], [effic[3],16], 
+                  [effic[2],16], [effic[1],16], [effic[0],16]],
          colorset: ['#0072b2', '#cc79a7'],
          fields:['개인연비', '공인연비']
      },
@@ -303,7 +305,38 @@ var options = {
    Nwagon.chart(options);
    
 });   
-
+$('#myCarList').change(function(event) {
+	$.getJSON("select.do?no="+$(this).val(), 
+	    function(resultObj) {
+	  alert("하하 ");
+	  var effic = new Array();
+	  for (var i = 0; i < 7; i++) {
+	    effic[i] = (resultObj.refuelList[i].mile-resultObj.refuelList[i+1].mile)/resultObj.refuelList[i+1].liter;
+	    alert(effic[i]);
+	  }
+	  var options = {
+	      'legend':{names: ['01', '01', '01', '01', '01', '01', '01', '01']},
+	      'dataset':{
+	          title:'개인연비 per 공인연비', 
+	          values: [[effic[6],16], [effic[5],16], [effic[4],16], [effic[3],16], 
+	                   [effic[2],16], [effic[1],16], [effic[0],16]],
+	          colorset: ['#0072b2', '#cc79a7'],
+	          fields:['개인연비', '공인연비']
+	      },
+	      'chartDiv' : 'chart71',
+	      'chartType' : 'line',
+	      'leftOffsetValue': 30,
+	      'bottomOffsetValue': 20,
+	      'chartSize' : {width:500, height:250},
+	      'minValue' :0,
+	      'maxValue' : 20,
+	      'increment' : 5,
+	      'isGuideLineNeeded' : true //default set to false
+	  };
+	    Nwagon.chart(options);
+	});
+alert($(this).val());
+});
  </script>
 </body>
 </html>

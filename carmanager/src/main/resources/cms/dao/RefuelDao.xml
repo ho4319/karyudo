@@ -17,6 +17,8 @@
       rno, grno, ref_dt, mile, cost, liter
     from refuel
     where grno = #{no}
+    order by ref_dt desc
+    limit 8
   </select>
    
   <select id="selectCostAvg" resultMap="refuelMap">
@@ -25,7 +27,7 @@
   		avg(cost)as cost 
   	from refuel 
   	group by month(ref_dt)
-  	order by liter desc;
+  	order by liter desc
   </select>
   
 </mapper>

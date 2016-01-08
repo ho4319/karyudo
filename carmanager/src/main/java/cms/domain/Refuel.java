@@ -8,7 +8,7 @@ public class Refuel {
   protected Date refuelDate;
   protected int mile;
   protected int cost;
-  protected int liter;
+  protected float liter;
   
   public Refuel() {
    
@@ -60,11 +60,11 @@ public class Refuel {
     this.cost = cost;
   }
 
-  public int getLiter() {
+  public float getLiter() {
     return liter;
   }
 
-  public void setLiter(int liter) {
+  public void setLiter(float liter) {
     this.liter = liter;
   }
   
