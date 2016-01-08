@@ -13,7 +13,7 @@
   </resultMap>
   
   <select id="selectOneByEmailPassword" resultType="member" parameterType="map">
-    select mno, email, nick, photo, grade, pwd
+    select mno, email, nick, photo, grade
     from members
     where email=#{email} and pwd=sha1(#{password})
   </select>
