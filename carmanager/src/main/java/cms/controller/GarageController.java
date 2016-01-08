@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import cms.domain.Garage;
 import cms.domain.Member;
@@ -31,22 +32,21 @@ public class GarageController {
   		HttpSession session) throws Exception {
 
   	System.out.println("들어간다 ");
-  	Member member = (Member)session.getAttribute("loginUser");
-  	log.debug(member.toString());
+  	//Member member = (Member)session.getAttribute("loginUser");
+  	//log.debug(member.toString());
 		int no = 1;
-    log.debug("message");
     List<Garage> garages = garageService.listAll(no);
     List<Refuel> refuels = refuelService.listAll(no);
     List<Refuel> costavg = refuelService.costAvg();
     //for (Garage g : garages) {
-    //  log.debug(g.getNickName());
+    //  log.debug(g.toString());
     //}
     //for (Refuel r : refuels) {
     //  log.debug(r.toString());
     //}
-    for (Refuel r : costavg) {
-     log.debug(r.toString());
-    }
+    //for (Refuel r : costavg) {
+    // log.debug(r.toString());
+    //}
     
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
@@ -55,6 +55,22 @@ public class GarageController {
     resultMap.put("memCostAvg", costavg);
     return resultMap;  
 
+  }
+  @RequestMapping(value="select", method=RequestMethod.GET)
+  public Object selList(int no,
+  		HttpSession session) throws Exception {
+  	log.debug("현재 차량은 " + no);
+  	
+    List<Refuel> refuels = refuelService.listAll(no);
+    List<Refuel> costavg = refuelService.costAvg();
+    for (Refuel r : refuels) {
+      log.debug(r.toString());
+    }
+  	HashMap<String, Object> resultMap = new HashMap<>();
+  	resultMap.put("status", "success");
+    resultMap.put("refuelList", refuels);
+    resultMap.put("memCostAvg", costavg);
+    return resultMap; 
   }
   
 }
